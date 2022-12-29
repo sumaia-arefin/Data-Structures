@@ -1,0 +1,84 @@
+
+
+
+#Task 1(a):
+
+def fact(n):
+    if n==0:
+        return 0
+    elif n==1:
+        return 1
+    else:
+        return (n*fact(n-1))
+var=5
+print(fact(var))
+
+
+
+#Task 1(b):
+
+def fib(n):
+    if n==0:
+        return 0
+    elif n==1:
+        return 1
+    else:
+        return fib(n-1)+fib(n-2)
+var=5
+print(fib(var))
+
+
+
+#Task 1(c)
+def recur(a,b):
+    if (b>len(a)-1):
+        return
+    else: 
+        print(a[b])
+        return recur(a,b+1)
+x=[1,2,3,4,5]
+recur(x,0)
+
+
+
+#Task 1(d)
+
+def power(x,y):
+    if x==0:
+        return 0
+    elif x==1:
+        return 1
+    elif y==0:
+        return 1
+    elif y==1:
+        return x
+    else:
+        return (x*power(x,y-1))
+print(power(3,6))
+
+
+
+#Task 2(a)
+
+def binary(n):
+    if n==0:
+        return 0
+    else:
+        return (n%2)+(10*binary(n//2))
+print(binary(30))
+class nodes:
+    def __init__(self,var):
+        self.var=var
+        self.next=None
+def linkedlist(a):
+    head=None
+    num=None
+    for i in a:
+        node=nodes(i)
+        if head is None:
+            head=node
+            num=node
+        else:
+            num.next=node
+            num=node
+    return head

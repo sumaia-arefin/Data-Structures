@@ -1,0 +1,184 @@
+
+LAB-04
+
+Name: Sumaiya Arefin Ritu
+ID: 20301059
+Section: 10
+
+
+#__________________________________________________
+                        #STACK
+#__________________________________________________
+					
+#_________________________________________________
+    #Task-01
+#_________________________________________________
+                                                                                     
+class arrayBased:
+    def __init__(self):      
+        self.stack=[]
+        self.pointer =- 1
+    def push(self, n):
+        self.stack += [n]
+        self.pointer += 1
+    def empty(self):
+        if self.pointer == -1:
+            return True
+        return False
+    def peek(self):
+        check_it = len(self.stack)
+        if check_it == None:
+            return "Here is an exception"
+        else: 
+            return self.stack[self.pointer]
+    def popenn(self):
+        check_it = len(self.stack)
+        if check_it == None:
+            return "Here is an exception"      
+        else:
+            store =self.stack[self.pointer]
+            self.stack =self.stack[:-1]
+            self.pointer =(self.pointer - 1)
+            return store
+    def check(self,string):
+        num = 0
+        openn = ["(","{","["]
+        closer = [")","}","]"]  
+        flags = False        
+        for xy in range(len(string)):
+            if string[xy] in openn:
+                self.push(xy)                
+            elif string[xy] in closer:
+                if self.pointer == -1:
+                    num = (xy + 1)
+                    return f"This expression is NOT correct.\nError at charracter,{xy + 1},'{string[xy]}',-not opend."
+                up = self.popenn()
+                if string[up] == openn[0] and string[xy] == closer[0]: 
+                    flags =True
+                elif string[up] == openn[1] and string[xy] == closer[1]: 
+                    flags =True
+                elif string[up] == openn[2] and string[xy] == closer[2]: 
+                    flags =True
+                else:
+                    flags = False
+                    num = up + 1
+                    break
+        if flags == True: 
+            return "This expression is correct."
+        else:
+            return f"This expression is NOT correct.\nError at charracter,{num},'{string[num - 1]}',-not closed."           
+class Stack_Overflowexception:
+    def __init__(self):
+        print("Stack Overflow")       
+class Stack_Underflowexception:
+    def __init__(self):
+        print("Stack Underflow")     
+    def __str__(self):
+        return "None"
+x1 = array_Based()
+print(x1.check("1+2*(3/4)"))
+x2 = array_Based()
+print(x2.check("1+2*[3*3+{4–5(6(7/8/9)+10)–11+(12*8)]+14"))
+x3 = array_Based()
+print(x3.check("1+2*[3*3+{4–5(6(7/8/9)+10)}–11+(12*8)/{13+13}]+14"))
+x4 = array_Based()
+print(x4.check("1+2]*[3*3+{4–5(6(7/8/9)+10)–11+(12*8)]+14"))
+
+
+#_________________________________________________
+    #Task-02
+#_________________________________________________
+                                                                                     
+
+class node:
+    def __init__(self, given, nxt):
+        self.given = given
+        self.nxt = nxt       
+class linked_List_Based:
+    def __init__(self):
+        self.head = None      
+    def push(self, given):
+        take_node = node(given,None)
+        if self.head ==None:
+            self.head = take_node
+        else:
+            take_node.nxt = self.head
+            self.head = take_node  
+    def empty(self):
+        if self.head == None:
+            return True
+        return False
+    def peek(self):
+        if self.head == None: 
+            return "Exception"
+        else: 
+            return self.head.given      
+    def pop(self):
+        if self.head == None:
+            return "Exception"
+        fresh = self.head
+        self.head = self.head.nxt
+        fresh.given = None
+        fresh.nxt = None
+    def check(self, x):
+        openn =['(', '{', '[']
+        num =0
+        closer = [')', '}', ']']  
+        flags =False 
+        for idx in range(len(x)):
+            if x[idx] in openn:
+                self.push(idx)      
+            elif x[idx] in closer:
+                if self.head == None:
+                    keep = idx+1
+                    return (f"This expression is NOT correct.\nError at charracter,{idx + 1},'{x[idx]}',-not opend.")
+                up = self.peek()
+                if x[up] == openn[0]:
+                    if x[idx] == closer[0]:
+                        self.pop()
+                        flags = True
+                    else:
+                        return (f"This expression is NOT correct.\nError at charracter,{up + 1},'{x[up]}',-not opend.")
+                elif x[up] == openn[1]:
+                    if x[idx] == closer[1]:
+                        self.pop()
+                        flags =True
+                    else:
+                        return (f"This expression is NOT correct.\nError at charracter,{up + 1},'{x[up]}',-not opend.")
+                elif x[up] == openn[2]:
+                    if x[idx] == closer[2]:
+                        self.pop()
+                        flags =True
+                    else:
+                        return (f"This expression is NOT correct.\nError at charracter,{up + 1},'{x[up]}',-not opend.")              
+                else:
+                    flags = False
+                    num = (up + 1)
+                    break
+        if flags == True: 
+            return "This expression is correct."         
+        else:
+            return f"This expression is NOT correct.\nError at charracter,{num},'{x[num - 1]}',-not closed."        
+class Stack_Over_Flowexception:
+    def __init__(self):
+        print("Stack Overflow")    
+class Stack_Under_Flowexception:
+    def __init__(self):
+        print("Stack Underflow")
+    def __str__(self):
+        return "None"    
+x1 = linked_List_Based()
+print(x1.check("1+2*(3/4)"))
+x2 = linked_List_Based()
+print(x2.check("1+2*[3*3+{4–5(6(7/8/9)+10)–11+(12*8)]+14"))
+x3 = linked_List_Based()
+print(x3.check("1+2*[3*3+{4–5(6(7/8/9)+10)}–11+(12*8)/{13+13}]+14"))
+x4 = linked_List_Based()
+print(x4.check("1+2]*[3*3+{4–5(6(7/8/9)+10)–11+(12*8)]+14"))
+
+
+
+
+
+
+

@@ -1,0 +1,306 @@
+
+LAB-01
+
+Name: Sumaia Arefin Ritu
+ID: 20301059
+Section: 10
+________________________________________________
+        Linear Arrays
+________________________________________________
+
+#Task-01
+
+def shiftLeft(value,var):
+    lenght=len(value)
+    i=0
+    while(i<length):
+        if i+var>=length:
+            value[i]=0
+            i+=1
+
+        else:
+            value[i]=value[i+var]
+            i+=1
+    print(value)
+value=[10,20,30,40,50,60]
+shiftLeft(value,3)
+
+
+
+
+#Task-02
+
+def rotateLeft(source,x):
+    var=len(source)
+    value=[None]*x
+    loop=True
+    i=0
+    for i in range(var):
+        if i<x:
+            value[i-x]=source[i]
+        else:
+            loop=False
+            break
+    if (loop==False):
+        i=0
+        while (i<var):
+            if (i-x)>var:
+                source[i]=0
+                i+=1
+            else:
+                source[i]=source[i-x]
+                i+=1
+        for i in range(x,var):
+            source[i]=value[i-x]
+    else:
+        pass
+    print(source)
+source = [10,20,30,40,50,60]
+rotateLeft(source,3)
+
+
+
+#Task-03:
+
+def remove(source,size,indexx):
+    num=([0]*(size+2))
+    source[indexx]=0
+    i=0
+    x=0
+    while(i<len(source)):
+        if source[i] != 0:
+             num[x]=source[i]
+             i+=1
+             x+=1
+        else:
+             i+=1
+    print(num)
+source=[10,20,30,40,50,0,0]
+remove(source,5,2)
+
+
+
+
+#Task-04
+
+def removeAll(source,size,element):
+     var=([0]*(size+2))
+     for i in range(len(source)):
+         if source[i]==element:
+             source[i]=0
+     i=0
+     x=0
+     while(i<len(source)):
+         if source[i] != 0:
+             var[x]=source[i]
+             i+=1
+             x+=1
+         else:
+             i+=1
+     print(var)
+source=[10,2,30,2,50,2,2,0,0]
+removeAll(source,7,2)
+
+
+
+
+#Task-05
+
+def split_Array(element):
+    ones=0
+    while (ones<len(element)):
+        var=element[0:ones+1]
+        var_2=element[ones+1:len(element)]
+        count=0
+        num=0
+        for i in var:
+            count+=i
+        for x in var_2:
+          num+=x
+        if count==num:
+            print("True")
+            break
+        else:
+            ones+=1
+        if count!=num:
+           print("False")
+user=input("Enter the number: ")
+array=[]
+for ones in user:
+    ones=int(ones)
+    array.append(ones)
+split_Array(array)
+
+
+
+
+
+#Task-06
+
+def series(a):
+    var=([0]*(a*a))
+    count=0
+    length=(len(var)-1)
+    while(length>=0):
+        element=length
+        x=1
+        for i in range(0,(a-count)):
+            var[element]=x
+            x+=1
+            element-=1
+        count+=1
+        length-=a
+    print(var)
+series(4)
+
+
+
+
+
+#Task-07
+
+def bunch(array):
+    var=1
+    count=0
+    while(count<len(array)):
+        x=0
+        y=count
+        while(y<len(array)):
+            if array[count]==array[y]:
+                x+=1
+                y+=1
+            else:
+                break
+        if (x>var):
+            var=x
+        count+=x
+    print(var)
+bunch([1, 2, 2, 3, 4, 4, 4])
+
+
+
+
+#Task-08
+
+given=[3,4,6,3,4,7,4,6,8,6,6]
+def check(given):
+  	var=[]
+  	value=[]
+  	for i in given:
+    	   if i not in var:
+           var+=[i]
+        for i in var:
+           if given.count(i)!=1:
+               value+=[given.count(i)]
+           if len(value)==len(set(value)):
+               return False
+           else:
+               return True
+print(check(given))
+
+
+
+_____________________________________________________________
+                       Circular Array
+______________________________________________________________
+
+#Task-01
+
+def palindrome(array,starts,size):
+    s=starts
+    var=True
+    total=((starts+size-1)%len(array))
+    if (total<0):
+        total=(len(array)-1)
+    else:
+        pass
+    for i in range(int(size/2)):
+        if array[s]==array[total]:
+            var=True
+            total-=1
+            s+=1
+        else:
+            var=False
+            break
+    return var
+given=[20,10,0,0,0,10,20,30]
+print(palindrome(given,5,5))
+
+
+
+
+
+#Task-02
+
+def intersection(a_1,st_1,s_1,a_2,st_2,s_2):
+    if (s_1>s_2):
+        long=s_1
+    else:
+        long=s_2
+    i_1=st_1
+    sum=([0]*long)
+    count= 0
+    for i in range(long):
+        if (a_1[i_1] in a_2):
+            if a_1[i_1] != 0:
+                sum[count] = a_1[i_1]
+                count+= 1
+                i_1 =(i_1+1)%len(a_1)
+            else:
+                continue
+        else:
+            i_1 =(i_1+1)%len(a_1)
+            continue
+    total=([0]*count)
+    for x in range(count):
+        if sum[x] != 0:
+            total[x]=sum[x]
+        else:
+            continue
+    print(total)
+a_1=[40,50,0,0,0,10,20,30]
+a_2=[10,20,5,0,0,0,0,0,5,40,15,25]
+intersection(a_1,5,5,a_2,8,7)
+
+
+
+
+
+
+#Task-03
+
+import random
+def musical_participants(array):
+    name=len(array)
+    i = len(array)
+    while(name>=2):
+        a= random.randint(0,3)
+        if name!= 1:
+            if a== 1:
+                array[int(name/2)]="0"
+                name-= 1
+            else:
+                for x in range(0,name):
+                    last = array[len(array)-1]
+                    for y in range(len(array)-1,-1,-1):
+                        array[y]=array[y- 1]
+                    array[0]=last
+                name=name
+        else:
+            break
+    for z in range(len(array)):
+        if array[z] !="0":
+            print(array[z])
+            break
+        else:
+            continue
+musical_participants(["Pokemon","Tom","Jerry","Doreamon","Elsa","Nobita","Mickey Mouse"])
+
+
+
+--------------------------------------------------
+
+
+
+
+

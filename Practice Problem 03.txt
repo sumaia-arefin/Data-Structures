@@ -1,0 +1,194 @@
+
+          LAB-03 
+
+
+   Name: Sumaia Arefin Ritu
+        ID: 20301059
+        Section: 10
+________________________________________________
+   Dummy Headed Doubly Circular Linked List
+________________________________________________
+
+
+#________________________________________________
+        #Task-01
+#________________________________________________
+
+class Node:
+    def __init__(self,elem,nxt,value):
+            self.elem=elem
+            self.nxt=nxt
+            self.value=value
+
+
+#________________________________________________
+        #Task-02, ## 01
+#________________________________________________
+
+class DoublyList:
+    def __init__(self,a):
+            self.head=Node(None,None,None)
+            self.head.nxt=self.head.value=self.head
+            self.x=self.head
+            if len(a)!=0:
+                for i in range (len(a)):
+                    nodes=Node(a[i],None,None)
+                    self.x.nxt=nodes
+                    nodes.nxt=self.head
+                    nodes.value=self.x
+                    self.x=nodes
+                    self.head.value=nodes
+            
+#________________________________________________
+        ## 02
+#________________________________________________
+
+    def showList(self):
+            if self.head.nxt.elem == None:
+                print("EmptyList")
+            else:
+                num=self.head.nxt
+                while (num.elem!= None):
+                    if num.nxt.elem != None:
+                        print(num.elem,end=" ")
+                        num=num.nxt
+                    else:
+                        print(num.elem,end="\n")
+                        num=num.nxt
+
+            print(end="\n")    
+
+#________________________________________________
+        ## 03
+#________________________________________________   
+        
+                    
+    def insert(self,newElement):
+            now=self.head.nxt
+            count=False
+            while(now.elem!= None):
+                if now.elem==newElement:
+                    count=True
+                    break
+                else:
+                    count=False
+                    now=now.nxt
+            if count==True:
+                print("New Element already exists in the list")
+            else:
+                box=Node(elem,None,None)
+                self.x.nxt=box
+                box.nxt=self.head
+                box.value=self.x
+                self.x=box
+                self.head.value=box
+            
+#________________________________________________
+        ## 04
+#________________________________________________        
+    
+    def insertIndex(self,newElement,index):
+            now=self.head.nxt
+            count=False
+            head=self.head
+            i=0
+            while(head.nxt.elem!= None):
+                i+= 1
+                head=head.nxt
+            if (index>=i):
+                print("The index is invalid")
+            else:
+                while (now.elem!=None):
+                    if  now.elem==newElement:
+                        count=True
+                        break
+                    else:
+                        count=False
+                        now=now.nxt
+                if (count==True):
+                    print("The element already exists in list")
+                else:
+                    location_1=self.head
+                    location_2=self.head
+                    counter=0
+                    while (counter<=index):
+                        location_2=location_2.nxt
+                        location_1=location_2.value
+                        counter+=1
+                    box=Node(elem,None,None)
+                    p=location_1.nxt
+                    box.nxt=location_2
+                    box.value=location_1
+                    location_1.nxt=box
+                    p.value=box 
+                    
+    
+#________________________________________________
+        ## 05
+#________________________________________________
+
+    def remove(self,index):
+            var=self.head.nxt
+            count=False
+            head=self.head
+            i=0
+            while (head.nxt.elem!=None):
+                i+=1
+                head=head.nxt
+            if index>=i:
+                print("The index is invalid")
+            else:
+                location_1=self.head
+                location_2=self.head
+                count=0
+                while (count<=index):
+                    location_2=location_2.nxt
+                    location_1=location_2.value
+                    count+=1
+                p_1=location_2.value
+                p_2=location_2.nxt
+                p_1.nxt= p_2
+                p_2.value=p_1
+                location_2.nxt=location_2.value=None
+                location_2.elem=None   
+                
+#________________________________________________
+        ## 06
+#________________________________________________ 
+              
+    def removeKey(self,deletekey):
+            now=self.head.nxt
+            count=None
+            while(now.elem!= None):
+                if now.elem==deletekey:
+                    count=now
+                    break
+                else:
+                    now=now.nxt
+            location_1=count.value
+            location_2=count.nxt
+            location_1.nxt=location_2
+            location_2.value=location_1
+            count.nxt=count.value=None
+            count.elem=None
+            print("The deleted key value:",deletekey)
+    
+
+#Calling the Funtions
+
+
+given_list=DoublyList([10,20,30,40,50,60,70,80])
+given_list.showList()
+given_list.insert(40)
+given_list.showList()
+given_list.insert(60)
+given_list.showList()
+given_list.insertIndex(50,5)
+given_list.showList()
+given_list.remove(70)
+given_list.showList()
+given_list.removeKey(20)
+given_list.showList()
+
+
+

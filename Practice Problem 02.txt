@@ -1,0 +1,348 @@
+
+          LAB-02 
+
+
+   Name: Sumaia Arefin Ritu
+        ID: 20301059
+        Section: 10
+________________________________________________
+        Linked List
+________________________________________________
+
+
+________________________________________________
+        Task-01
+________________________________________________
+
+
+class Node:
+    def __init__(self,name,add):
+        self.name=name
+        self.add= add
+class MyList:
+    def __init__(self,x):
+        self.head=None
+        list1=None
+
+
+________________________________________________
+        Task-02
+________________________________________________
+
+
+## 01
+
+class Node:
+    def __init__(self,name,add):
+        self.name=name
+        self.add= add
+class MyList:
+    def __init__(self,x):
+        self.head=None
+        list1=None
+        for i in x:
+            new_node =Node(i,None)
+            if self.head == None:
+                self.head=new_node
+                list1=new_node
+            else:
+                list1.add=new_node
+                list1=new_node
+                
+    def node(self,x):
+        elem=self.head
+        count=0
+        for i in range(0,x):
+            elem=elem.add
+        print(elem)
+
+        
+## 02
+
+    def showList(self):
+        num=self.head
+        if num==None:
+            print("Empty List")
+        else:
+            while num!=None:
+                print(num.name, end=" ")
+                num=num.add
+
+## 03
+
+    def isEmpty (self):
+        if self.head!=None:
+            return False
+        else:
+            return True
+
+## 04
+ 
+    def clear(self):
+        if self.head !=None:
+            self.head=None
+        print(" Removes all the elements from a list.")
+
+## 05
+    
+    def insert(self, new_Element):
+        ele=self.head
+        check=False
+        while ele!=None:
+            if ele.name==new_Element:
+                check=True
+                break
+            else:
+                ele=ele.add
+        if check:
+            print(" The key is already exists")
+        else:
+            ele=self.head
+            while ele.add !=None:
+                ele=ele.add
+            ele.name=new_Element
+
+## 06
+
+     def inserts(self,new_Element,index=None):
+        elem=self.head
+        if index==None:
+            box=Node(new_Element,None)
+            while elem!=None:
+                if elem.name==box.name:
+                    print("The key is already exists")
+                    break
+                if elem.add==None:
+                    elem.add=box
+                    break
+                elem=elem.add
+                
+        else:
+            box= Node(new_Element,None)
+            count=0
+            if index==0:
+                box.add=self.head     
+                box=self.head
+            else:
+                while elem!=None:
+                    if elem.name==new_Element:
+                        print("The key is already exists")
+                        break
+                    if count==index:
+                        value=self.node(index-1)
+                        box.add=value.add
+                        value.add=box
+                    count+=1
+                    x=elem
+                    elem=elem.add
+                if count==index:
+                    x.add=box
+
+
+## 07
+
+    
+     def remove(self, delete_key):
+        rev=self.head
+        if self.head==None:
+            return None
+        value=False
+        if rev.name== delete_key:
+            self.head=rev.add
+            return rev.name
+        while rev.add!=None:
+            if rev.add.name==delete_key:
+                value=True
+                rev.add=rev.add.add
+                break
+            rev=rev.add
+        if value==False:
+            print(delete_key)
+        return None
+
+
+
+________________________________________________
+        Task-03
+________________________________________________
+
+
+## 01
+
+    def even_num(self):
+        num= self.head
+        count=0
+        while num!=None:
+            if ((num.name)%2)==0:
+                
+                count+=1
+            num=num.add
+        num=self.head
+        lists=[0]*count
+        count=0
+        while num!=None:
+            if num.name%2==0:
+                lists[count]=num.name
+                count+=1
+            num=num.add
+            print(lists)
+
+## 02
+    
+     def findOut(self, number):
+        a=self.head
+        var=Node(number,None)
+        while a!=None:
+            if a.name==number:
+                return True
+            a=a.add
+        return False
+
+## 03
+
+     def reverseNum(self):
+        num=self.head
+        count=None
+        while num!=None:
+            value=num.add
+            num.add=count
+            count=num
+            num=value
+        self.head=count
+
+
+## 04 
+
+    def sortNum(self):
+        num=self.head
+        count=0
+        while num!=None:
+            count+=1
+            num=num.add
+        y=0
+        while(y<count):
+            num=self.head
+            if(num.name>num.add.name):
+                value=num.name
+                num.name=num.add.name
+                num.add.name=value
+            num=num.add
+            y+=1
+            return self.head
+
+## 05
+
+     def sum_Num(self) :
+        num=self.head
+        count=0
+        while num!=None:
+            count+=num.name
+            num=num.add
+        return count
+
+## 06
+
+    def rotatesNum (self, number,k):
+        if k=="left":
+            for i in range(0,number):
+                value=self.head
+                x=self.head
+                y=self.head.add
+                while x.add!=None:
+                    x=x.add
+                x.add=value
+                self.head=y
+        if k=="right":
+            for i in range(0,number):
+                value=self.head
+                x=self.head
+                old_y= None
+                while x.add!=None:
+                    if x.add.add==None:
+                        x=old_y
+                        x=x.add
+                        break
+                    x.add=x
+                x.add=value
+                self.head=x
+                old_y.add=None
+
+
+## Calling the Methods
+
+                
+given_lists=[1,2,3,4,5]
+obj_1= MyList(given_lists)
+obj_1.showList()
+
+
+emptylist= obj_1.isEmpty()
+print(emptylist)
+a=[]
+obj_2=MyList(a)
+
+
+obj_1.showList()
+obj_2.clear()
+obj_1.showList()
+
+
+list1=[1,2,3,4,5,6,7,8,9]
+obj_3=MyList(list1)
+obj_3.showList()
+obj_3.inserts(6)
+obj_3.showList()
+obj_3.inserts(0,0)
+obj_3.showList()
+
+
+obj_3.showList()
+obj_3.remove(1)
+obj_3.showList()
+obj_3.remove(100)
+obj_3.showList()
+obj_3.remove(115)
+obj_3.showList()
+obj_3.remove(0)
+
+
+num=[1,2,3,4,5]
+obj_4=MyList(num)
+obj_x=obj_4.even_num()
+obj_4.showList()
+
+
+finiding=obj_4.findOut(3)
+print(finiding)
+
+
+print("Before:",end =" ")
+obj_4.showList()
+obj_4.reverseNum()
+print("After:",end =" ")
+obj_4.showList()
+
+
+print("Before: ")
+obj_4.showList()
+obj_4.sortNum()
+print("After: ")
+obj_4.showList()
+
+
+obj_4.showList()
+calculate= obj_4.sum_Num()
+print("Total Number: ",calculate)
+
+
+obj_4.showList()
+obj_4.rotatesNum(3,"left")
+obj_4.showList()
+obj_4.rotatesNum(3,"right")
+obj_4.showList()
+
+
+-------------------------------------------------------------
+-------------------------------------------------------------
+
+
